@@ -37,7 +37,13 @@ function CardComponent({ product, addToCart }) {
         <div className="card-body">
           <p className="card-text m-0" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{product.name}</p>
           <div className="my-2 fw-bold d-flex" style={{ fontSize: '15px' }}>
-            <h5 className="fs-6 text-muted text-decoration-line-through">{product.price.toFixed(2)}$</h5>
+            {product.price !== undefined &&
+              product.price !== 0 &&
+              product.price !== product.priceAfterSale && (
+                <h5 className="fs-6 text-muted text-decoration-line-through">
+                  {product.price.toFixed(2)}$
+                </h5>
+              )}
             <h5 className="fs-6 mx-1">{product.priceAfterSale.toFixed(2)}$</h5>
           </div>
           <button className='w-100 btn btn-dark'>
