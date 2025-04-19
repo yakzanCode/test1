@@ -137,9 +137,9 @@ function ProductDetails() {
           <p className="text-secondary">{product.description}</p>
 
           <div className="my-3 d-flex">
-            <h5 className="fs-5 text-muted text-decoration-line-through">${product.priceAfterSale}</h5>
-            <h3 className="fs-5 mx-1">${product.price.toFixed(2)}</h3>
-            <div className='d-flex p-0 border border-dark my-1' style={{ width: '45px', height: '17px', fontSize: '10px' }}> <span className='p-0 m-0 m-auto'>save {product.salePercent}%</span> </div>
+            <h5 className="fs-5 text-muted text-decoration-line-through">${product.price.toFixed(2)}</h5>
+            <h3 className="fs-5 mx-1">${product.priceAfterSale.toFixed(2)}</h3>
+            <div className='d-flex p-0 border border-dark my-1' style={{ width: '50px', height: '17px', fontSize: '10px' }}> <span className='p-0 m-0 m-auto'>save {product.salePercent}%</span> </div>
           </div>
 
           <div className="fw-bold" style={{ fontSize: '15px' }}>
