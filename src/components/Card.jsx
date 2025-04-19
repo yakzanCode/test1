@@ -37,14 +37,9 @@ function CardComponent({ product, addToCart }) {
         <div className="card-body">
           <p className="card-text text-muted m-0 fw-semibold" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{product.name}</p>
           <div className=" mt-2 d-flex" style={{ fontSize: '15px' }}>
-            <h5 className="card-title fw-bold">{product.price}$</h5>
-            <i className='ms-auto bi bi-fire text-danger'></i>{product.salesCount} items sold
-
-          </div>
-          <div className="text-secondary">
-            <i className="bi bi-cart4 float-end p-0 ms-auto" role='button' onClick={() => addToCart(product)}>
-
-            </i>
+            <h5 className="card-title fw-bold fs-6">{product.price}$</h5>
+            {/* <i className='ms-auto bi bi-fire text-danger'></i>{product.salesCount} items sold */}
+            <i className="bi bi-cart4 text-secondary float-end p-0 ms-auto" role='button' onClick={() => addToCart(product)}></i>
           </div>
           <div className='mt-1'>
             {renderStars(product.rating)}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { addToCart } from '../utils/firstUtils';
+import { addToCart } from '../utils/firstUtils.js';
 import CardComponent from './Card';
 
 function ProductsList() {

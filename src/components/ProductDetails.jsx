@@ -96,6 +96,20 @@ function ProductDetails() {
     }
   };
 
+  const renderStars = (rating) => {
+    const totalStars = 5;
+    const filledStars = Math.round(rating); // Number of filled stars
+    const emptyStars = totalStars - filledStars; // Number of empty stars
+
+    // Create an array of filled and empty star icons
+    const stars = [
+      ...Array(filledStars).fill(<i className="bi bi-star-fill text-pink"></i>),
+      ...Array(emptyStars).fill(<i className="bi bi-star text-pink"></i>)
+    ];
+
+    return stars;
+  };
+
   if (loading) return <p className="text-center my-5">Loading product details...</p>;
   if (!product) return <p className="text-center my-5">Product not found.</p>;
 
@@ -119,14 +133,14 @@ function ProductDetails() {
 
         {/* Product Info */}
         <div className="col-md-6">
-          <h3 className="mb-0">{product.name.toUpperCase()}</h3>
-          <p className="text-secondary mb-0">{product.description}</p>
+          <h3>{product.name.toUpperCase()}</h3>
+          <p className="text-secondary">{product.description}</p>
 
-          <div className="my-1">
-            <h3 className="fw-bold">{product.price.toFixed(2)}$</h3>
+          <div className="my-3">
+            <h3 className="fw-bold fs-5">{product.price.toFixed(2)}$</h3>
           </div>
 
-          <div className="fw-bold px-1" style={{ fontSize: '15px' }}>
+          <div className="fw-bold" style={{ fontSize: '15px' }}>
             <span
               className="text-secondary"
               style={{
@@ -140,7 +154,9 @@ function ProductDetails() {
               {product.salesCount} items sold <i className="bi bi-fire text-pink"></i>
             </span>
             <span className="float-end">
-              {product.rating} <i className="bi bi-star-fill"></i>
+            {/* {product.rating} */}
+            {renderStars(product.rating)}
+            <span className='text-secondary'> {product.reviewsCount}</span>
             </span>
           </div>
 
