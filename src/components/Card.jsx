@@ -35,17 +35,14 @@ function CardComponent({ product, addToCart }) {
           style={{ height: '200px', objectFit: 'contain', cursor: 'pointer' }}
         />
         <div className="card-body">
-          <p className="card-text text-muted m-0 fw-semibold" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{product.name}</p>
-          <div className=" mt-2 d-flex" style={{ fontSize: '15px' }}>
-            <h5 className="card-title fw-bold fs-6">{product.price}$</h5>
-            {/* <i className='ms-auto bi bi-fire text-danger'></i>{product.salesCount} items sold */}
-            <i className="bi bi-cart4 text-secondary float-end p-0 ms-auto" role='button' onClick={() => addToCart(product)}></i>
+          <p className="card-text m-0" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{product.name}</p>
+          <div className="my-2 fw-bold d-flex" style={{ fontSize: '15px' }}>
+            <h5 className="fs-6 text-muted text-decoration-line-through">{product.priceAfterSale}$</h5>
+            <h5 className="fs-6 mx-1">{product.price}$</h5>
           </div>
-          <div className='mt-1'>
-            {renderStars(product.rating)}
-            <span className='text-secondary'> {product.reviewsCount}</span>
-          </div>
-          
+          <button className='w-100 btn btn-dark'>
+            <i className="bi bi-bag" onClick={() => addToCart(product)}> Add To Cart</i>
+          </button>
         </div>
       </div>
     </div>
