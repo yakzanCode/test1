@@ -99,10 +99,10 @@ export const sendOrderViaWhatsApp = (form, cart, cartTotal) => {
 📞 Phone: ${phone || '-----------------'}
 
 📝 Notes: ${notes || '-----------------'}
-
+————————————————————
 🧾 Order:
 ${productLines}
-
+————————————————————
 💰 Total: $${cartTotal.toFixed(2)}
   `.trim();
 
