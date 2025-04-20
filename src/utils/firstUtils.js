@@ -86,16 +86,16 @@ export const sendOrderViaWhatsApp = (form, cart, cartTotal) => {
   const productLines = cart.map(
     (item, index) =>
       `${index + 1}. ${item.name} (${item.selectedSize || ''}) × ${item.quantity} = $${(item.quantity * (item.price || 0)).toFixed(2)}`
-  ).join('%0A');
+  ).join('\n');
 
   // Construct WhatsApp message
   const message = `
-🛒 *New Order*%0A
-👤 Name: ${firstName} ${lastName}%0A
-📍 Location: ${location}%0A
-📞 Phone: ${phone || 'N/A'}%0A
-📝 Notes: ${notes || 'None'}%0A%0A
-🧾 Order:%0A${productLines}%0A
+🛒 *New Order*
+👤 Name: ${firstName} ${lastName}
+📍 Location: ${location}
+📞 Phone: ${phone || '--------'}
+📝 Notes: ${notes || '--------'}
+🧾 Order:${productLines}
 💰 Total: $${cartTotal.toFixed(2)}
   `.trim();
 
