@@ -58,7 +58,12 @@ export const removeFromCart = (cart, productId) => {
 // Add product to cart
 export const addToCart = (product, quantity = 1) => {
   const existingCart = getCart();
-  const itemIndex = existingCart.findIndex(item => item._id === product._id);
+  
+  const itemIndex = existingCart.findIndex(item =>
+     item._id === product._id &&
+      item.selectedSize === product.selectedSize && 
+      item.color === product.color
+    );
 
   if (itemIndex !== -1) {
     existingCart[itemIndex].quantity += quantity;
@@ -81,7 +86,7 @@ export const sendOrderViaWhatsApp = (form, cart, cartTotal) => {
   // Format cart items for message
   const productLines = cart.map(
     (item, index) =>
-      `${index + 1}. ${item.name}(${item.description}) × ${item.quantity} = $${(item.quantity * (item.price || 0)).toFixed(2)}`
+      `${index + 1}. ${item.name} (${item.selectedSize || ''}, ${item.description}) × ${item.quantity} = $${(item.quantity * (item.price || 0)).toFixed(2)}`
   ).join('%0A');
 
   // Construct WhatsApp message

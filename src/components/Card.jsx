@@ -1,19 +1,17 @@
 // CardComponent.js
 import { React, useEffect, useState } from 'react';
-import { findInCart } from '../utils/firstUtils.js';
+import { findInCart, isInCart } from '../utils/firstUtils.js';
 import { useNavigate } from 'react-router-dom';
 
-function CardComponent({ product, addToCart }) {
+function CardComponent({ product }) {
   const navigate = useNavigate();
 
   const [quantity, setQuantity] = useState(1);
-  const [inCart, setInCart] = useState(false);
 
   // Check if the product is already in the cart on mount
   useEffect(() => {
     const found = findInCart(product._id);
     if (found) {
-      setInCart(true);
       setQuantity(found.quantity);
     }
   }, [product._id]);
@@ -36,16 +34,17 @@ function CardComponent({ product, addToCart }) {
 
     return stars;
   };
-  const handleAddToCart = (e) => {
-    e.stopPropagation(); // Prevent triggering handleViewDetails
 
-    if (inCart) {
-      handleViewDetails();
-    } else {
-      addToCart({ ...product, quantity });
-      setInCart(true);
-    }
-  };
+  // const handleAddToCart = (e) => {
+  //   e.stopPropagation(); // Prevent triggering handleViewDetails
+
+  //   if (inCart) {
+  //     handleViewDetails();
+  //   } else {
+  //     addToCart({ ...product, quantity });
+  //     setInCart(true);
+  //   }
+  // };
 
   return (
 
@@ -73,11 +72,10 @@ function CardComponent({ product, addToCart }) {
             <h5 className="fs-6 mx-1">{product.priceAfterSale.toFixed(2)}$</h5>
           </div>
           <button className="w-100 btn btn-dark"
-            onClick={handleAddToCart}>
-            {/* <i className="bi bi-bag-fill"></i> Add To Cart */}
+            onClick={handleViewDetails}>
             <h6 className="m-0 py-2">
               <i className="bi bi-bag-fill me-1"></i>
-              {inCart ? `View Cart (${quantity})` : 'Add to Cart'}
+              {isInCart(product._id) ? `View Details (${quantity})` : 'Add to Cart'}
             </h6>
           </button>
         </div>

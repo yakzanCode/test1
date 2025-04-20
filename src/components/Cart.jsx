@@ -74,10 +74,10 @@ const Cart = () => {
             {cart.map((item) => (
               <div key={item._id} className="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2 position-relative">
                 <img loading="lazy" src={`https://yakzancode.github.io/test1/src/assets/${item.image}`}
-                  alt={item.title} style={{ width: '60px', height: '60px', objectFit: 'contain' }} />
+                  alt={item.name} style={{ width: '60px', height: '60px', objectFit: 'contain' }} />
                 <div className="flex-grow-1 mx-3">
-                  <h6 className="mb-1">{item.title}</h6>
-                  <small>{item.name}</small><br />
+                  <h6 className="mb-0">{item.name}</h6>
+                  <small>{`${item.color} / ${item.selectedSize}`}</small><br />
                   <strong>${(item.quantity * item.price).toFixed(2)}</strong>
                 </div>
                 <div className="btn-group mt-auto">

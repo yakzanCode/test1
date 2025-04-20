@@ -22,7 +22,7 @@ function Navbar() {
                         <i className="bi bi-filter-left fs-2 text-white"></i>
                     </a>
                     <span className='mx-md-4 mx-auto mx-md-1'>
-                        <Link to="/" className='navbar-brand text-white'>
+                        <Link to="/" className='navbar-brand fw-semibold text-white'>
                             {/* <img src="src/assets/logo.png" alt="Shop Logo" width="35" loading="lazy" /> */}
                             Ahmad's Shop
                         </Link>
@@ -43,7 +43,7 @@ function Navbar() {
                             </li>
                         </ul>
                     </div>
-                    <span className="me-3">
+                    <span>
                         <Link to="/cart" className='text-white text-decoration-none'><i className="bi bi-bag-fill fs-5"></i></Link>
                     </span>
                 </div>
