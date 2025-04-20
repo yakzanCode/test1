@@ -10,9 +10,9 @@ export const getCart = () => {
 };
 
 // Update cart item in localStorage
-export const updateCartItem = (productId, quantity) => {
+export const updateCartItem = (productId, selectedSize, quantity) => {
   const cart = getCart().map(item =>
-    item._id === productId ? { ...item, quantity } : item
+    item._id === productId && item.selectedSize === selectedSize ? { ...item, quantity } : item
   );
   updateCartInLocalStorage(cart);
 };
@@ -30,18 +30,18 @@ export const isInCart = (productId) => {
 };
 
 // Increase quantity of product in cart
-export const increaseQuantity = (cart, productId) => {
+export const increaseQuantity = (cart, productId, size) => {
   const updatedCart = cart.map(item =>
-    item._id === productId ? { ...item, quantity: item.quantity + 1 } : item
+    item._id === productId && item.selectedSize === size ? { ...item, quantity: item.quantity + 1 } : item
   );
   updateCartInLocalStorage(updatedCart);
 };
 
 // Decrease quantity of product in cart
-export const decreaseQuantity = (cart, productId) => {
+export const decreaseQuantity = (cart, productId, size) => {
   const updatedCart = cart
     .map(item =>
-      item._id === productId && item.quantity > 1
+      item._id === productId && item.quantity > 1 && item.selectedSize === size
         ? { ...item, quantity: item.quantity - 1 }
         : item
     )
@@ -50,20 +50,19 @@ export const decreaseQuantity = (cart, productId) => {
 };
 
 // Remove product from cart
-export const removeFromCart = (cart, productId) => {
-  const updatedCart = cart.filter(item => item._id !== productId);
+export const removeFromCart = (cart, productId, size) => {
+  const updatedCart = cart.filter(item => !(item._id === productId && item.selectedSize === size));
   updateCartInLocalStorage(updatedCart);
 };
 
 // Add product to cart
 export const addToCart = (product, quantity = 1) => {
   const existingCart = getCart();
-  
+
   const itemIndex = existingCart.findIndex(item =>
-     item._id === product._id &&
-      item.selectedSize === product.selectedSize && 
-      item.color === product.color
-    );
+    item._id === product._id &&
+    item.selectedSize === product.selectedSize
+  );
 
   if (itemIndex !== -1) {
     existingCart[itemIndex].quantity += quantity;
@@ -86,7 +85,7 @@ export const sendOrderViaWhatsApp = (form, cart, cartTotal) => {
   // Format cart items for message
   const productLines = cart.map(
     (item, index) =>
-      `${index + 1}. ${item.name} (${item.selectedSize || ''}, ${item.description}) × ${item.quantity} = $${(item.quantity * (item.price || 0)).toFixed(2)}`
+      `${index + 1}. ${item.name} (${item.selectedSize || ''}) × ${item.quantity} = $${(item.quantity * (item.price || 0)).toFixed(2)}`
   ).join('%0A');
 
   // Construct WhatsApp message
