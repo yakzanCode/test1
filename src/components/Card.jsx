@@ -29,7 +29,7 @@ function CardComponent({ product, addToCart }) {
     <div className="col-md-4 col-6 col-xs-12 mb-4" onClick={handleViewDetails}>
       <div className="card border-0">
         <img
-          src={`https://testfrontendreact.netlify.app/assets${product.image}`}
+          src={`https://yakzancode.github.io/test1/src/assets/${product.image}`}
           className="card-img-top"
           alt={product.name}
           style={{ height: '200px', objectFit: 'contain', cursor: 'pointer' }}
