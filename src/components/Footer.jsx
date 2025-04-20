@@ -6,7 +6,7 @@ function Footer() {
       <div className="container text-white text-center">
         <div className="row py-4 gy-3">
           <div className="col-md-4 d-flex flex-column justify-content-center">
-            <img className="mx-auto" style={{width: '60px'}} src="src/assets/logo.png" alt="Shop Logo"/>
+            <img loading="lazy" className="mx-auto" style={{width: '60px'}} src="src/assets/logo.png" alt="Shop Logo"/>
             <div className="fs-3">
               <Link className="text-white" to="https://wa.me/4915753368747"><i className="bi bi-whatsapp"></i></Link>
               <Link className="text-white mx-2" to="/"><i className="bi bi-facebook"></i></Link>

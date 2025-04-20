@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   getCart,
-  isInCart,
   findInCart,
   addToCart,
   updateCartItem
@@ -23,12 +22,6 @@ function ProductDetails() {
     setQuantity(newQty);
     if (inCart) {
       updateCartItem(product._id, newQty);
-      // Instead of reloading the page, you can just update the state
-      const updatedCart = getCart();
-      const found = findInCart(product._id);
-      if (found) {
-        setQuantity(found.quantity);
-      }
     }
   };
 
@@ -36,13 +29,9 @@ function ProductDetails() {
     if (quantity > 1) {
       const newQty = quantity - 1;
       setQuantity(newQty);
+
       if (inCart) {
         updateCartItem(product._id, newQty);
-        const updatedCart = getCart();
-        const found = findInCart(product._id);
-        if (found) {
-          setQuantity(found.quantity);
-        }
       }
     }
   };
@@ -50,10 +39,8 @@ function ProductDetails() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        // const response = await fetch(`http://localhost:3000/api/products/${id}`);
         const response = await fetch(`https://shop-o510.onrender.com/api/products/${id}`);
         const data = await response.json();
-        console.log('Fetched product:', data._id);
 
         if (data) {
           setProduct(data);
@@ -68,9 +55,7 @@ function ProductDetails() {
 
           // Fetch similar products by name, excluding this product's ID
           const similarRes = await fetch(
-            // `http://localhost:3000/api/products/similar?name=${encodeURIComponent(data.name)}&id=${data._id}`
-            `https://shop-o510.onrender.com/products/similar?name=${encodeURIComponent(data.name)}&id=${data._id}`
-
+            `https://shop-o510.onrender.com/api/products/similar?name=${encodeURIComponent(data.name)}&id=${data._id}`
           );
           const similarData = await similarRes.json();
           setSimilarProducts(similarData);
@@ -86,7 +71,6 @@ function ProductDetails() {
     fetchProduct();
   }, [id]);
 
-
   const handleAddToCart = () => {
     if (inCart) {
       navigate('/cart');
@@ -98,10 +82,9 @@ function ProductDetails() {
 
   const renderStars = (rating) => {
     const totalStars = 5;
-    const filledStars = Math.round(rating); // Number of filled stars
-    const emptyStars = totalStars - filledStars; // Number of empty stars
+    const filledStars = Math.round(rating);
+    const emptyStars = totalStars - filledStars;
 
-    // Create an array of filled and empty star icons
     const stars = [
       ...Array(filledStars).fill(<i className="bi bi-star-fill text-pink"></i>),
       ...Array(emptyStars).fill(<i className="bi bi-star text-pink"></i>)
@@ -118,12 +101,12 @@ function ProductDetails() {
       <button onClick={() => navigate(-1)} className="btn btn-light my-2">
         ← Back
       </button>
-      {loading && <div className="text-center"><div className="spinner-border" role="status"></div></div>}
 
       <div className="row g-4">
         {/* Product Image */}
         <div className="col-md-6 d-flex align-items-center justify-content-center">
           <img
+            loading="lazy"
             src={`https://yakzancode.github.io/test1/src/assets/${product.image}`}
             alt={product.name}
             className="img-fluid rounded-3"
@@ -145,7 +128,12 @@ function ProductDetails() {
                 </h5>
               )}
             <h3 className="fs-5 mx-1">${product.priceAfterSale.toFixed(2)}</h3>
-            <div className='d-flex p-0 border border-dark my-1' style={{ width: '50px', height: '17px', fontSize: '10px' }}> <span className='p-0 m-0 m-auto'>save {product.salePercent}%</span> </div>
+            {product.salePercent !== undefined &&
+              product.salePercent !== 0 && (
+                <div className="d-flex p-0 border border-dark my-1" style={{ width: '50px', height: '17px', fontSize: '10px' }}>
+                  <span className="p-0 m-0 m-auto">save {product.salePercent}%</span>
+                </div>
+              )}
           </div>
 
           <div className="fw-bold" style={{ fontSize: '15px' }}>
@@ -155,19 +143,16 @@ function ProductDetails() {
                 border: 'none',
                 borderRadius: '4px',
                 padding: '0px 4px',
-                background:
-                  'linear-gradient(to right,rgba(233, 88, 144, 0.71),rgba(233, 88, 144, 0.25),rgba(233, 88, 144, 0))'
+                background: 'linear-gradient(to right,rgba(233, 88, 144, 0.71),rgba(233, 88, 144, 0.25),rgba(233, 88, 144, 0))'
               }}
             >
               {product.salesCount} items sold <i className="bi bi-fire text-pink"></i>
             </span>
             <span className="float-end">
-              {/* {product.rating} */}
               {renderStars(product.rating)}
-              <span className='text-secondary'> {product.reviewsCount}</span>
+              <span className="text-secondary"> {product.reviewsCount}</span>
             </span>
           </div>
-
 
           {/* Similar Products (Product Image Boxes) */}
           <div className="mt-4">
@@ -182,6 +167,7 @@ function ProductDetails() {
                     style={{ cursor: 'pointer' }}
                   >
                     <img
+                      loading="lazy"
                       src={`https://yakzancode.github.io/test1/src/assets/${similarProduct.image}`}
                       alt={similarProduct.name}
                       style={{
@@ -192,6 +178,7 @@ function ProductDetails() {
                         border: '1px solid #ddd',
                       }}
                     />
+                    <b>{similarProduct.color}</b>
                   </div>
                 ))
               ) : (
@@ -201,6 +188,7 @@ function ProductDetails() {
                   style={{ cursor: 'pointer' }}
                 >
                   <img
+                    loading="lazy"
                     src={`https://yakzancode.github.io/test1/src/assets/${product.image}`}
                     alt={product.name}
                     style={{
@@ -218,15 +206,9 @@ function ProductDetails() {
 
           {/* Quantity Controls */}
           <button className="btn border mt-4 w-100 d-flex justify-content-between">
-            <i
-              onClick={decrement}
-              className="bi bi-dash"
-            ></i>
+            <i onClick={decrement} className="bi bi-dash"></i>
             <span>{quantity}</span>
-            <i
-              onClick={increment}
-              className="bi bi-plus"
-            ></i>
+            <i onClick={increment} className="bi bi-plus"></i>
           </button>
 
           {/* Add/View Cart Button */}

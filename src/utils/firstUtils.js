@@ -1,7 +1,7 @@
 // Save to localStorage and reload
 export const updateCartInLocalStorage = (cart) => {
   localStorage.setItem('cart', JSON.stringify(cart));
-  window.location.reload();
+  // window.location.reload();
 };
 
 // Get cart from localStorage
@@ -56,14 +56,14 @@ export const removeFromCart = (cart, productId) => {
 };
 
 // Add product to cart
-export const addToCart = (product) => {
+export const addToCart = (product, quantity = 1) => {
   const existingCart = getCart();
   const itemIndex = existingCart.findIndex(item => item._id === product._id);
 
   if (itemIndex !== -1) {
-    existingCart[itemIndex].quantity += 1;
+    existingCart[itemIndex].quantity += quantity;
   } else {
-    existingCart.push({ ...product, quantity: 1 });
+    existingCart.push({ ...product, quantity });
   }
 
   updateCartInLocalStorage(existingCart);
@@ -81,7 +81,7 @@ export const sendOrderViaWhatsApp = (form, cart, cartTotal) => {
   // Format cart items for message
   const productLines = cart.map(
     (item, index) =>
-      `${index + 1}. ${item.name}(${item.description}) × ${item.quantity} = $${(item.quantity * item.price).toFixed(2)}`
+      `${index + 1}. ${item.name}(${item.description}) × ${item.quantity} = $${(item.quantity * (item.price || 0)).toFixed(2)}`
   ).join('%0A');
 
   // Construct WhatsApp message
