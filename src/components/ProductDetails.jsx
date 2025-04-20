@@ -124,7 +124,7 @@ function ProductDetails() {
         {/* Product Image */}
         <div className="col-md-6 d-flex align-items-center justify-content-center">
           <img
-            src={product.image}
+            src={`https://testfrontendreact.netlify.app/assets${product.image}`}
             alt={product.name}
             className="img-fluid rounded-3"
             style={{ maxHeight: '400px', objectFit: 'contain' }}
@@ -182,7 +182,7 @@ function ProductDetails() {
                     style={{ cursor: 'pointer' }}
                   >
                     <img
-                      src={similarProduct.image}
+                      src={`https://testfrontendreact.netlify.app/assets${similarProduct.image}`}
                       alt={similarProduct.name}
                       style={{
                         width: '80px',
@@ -201,7 +201,7 @@ function ProductDetails() {
                   style={{ cursor: 'pointer' }}
                 >
                   <img
-                    src={product.image}
+                    src={`https://testfrontendreact.netlify.app/assets${product.image}`}
                     alt={product.name}
                     style={{
                       width: '80px',

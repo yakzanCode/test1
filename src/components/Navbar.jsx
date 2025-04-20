@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
 function Navbar() {
-
+    // className='container-fluid p-0' style={{overflowY: 'scroll'}}
     return (
 
-        <div>
+        <>
             <div id="topBarCarousel" className="carousel slide text-center" data-bs-ride="carousel">
                 <div className="carousel-inner bg-dark text-white py-1" style={{fontSize: '12px'}}>
                     <div className="carousel-item active">
@@ -22,8 +22,9 @@ function Navbar() {
                         <i className="bi bi-filter-left fs-2 text-white"></i>
                     </a>
                     <span className='mx-md-4 mx-auto mx-md-1'>
-                        <Link to="/" className='text-white text-decoration-none'>
-                            <img src="src/assets/logo.png" alt="Shop Logo" width="35" loading="lazy" />
+                        <Link to="/" className='navbar-brand text-white'>
+                            {/* <img src="src/assets/logo.png" alt="Shop Logo" width="35" loading="lazy" /> */}
+                            Ahmad's Shop
                         </Link>
                     </span>
                     <div className="text-uppercase collapse navbar-collapse" id="navbarSupportedContent">
@@ -73,7 +74,7 @@ function Navbar() {
                     <span className="mt-auto"><Link to="/cart"><span className="nav-link fs-4 fw-bold text-pink"><i className='bi bi-cart2 text-pink'></i></span></Link></span>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

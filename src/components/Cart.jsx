@@ -50,7 +50,8 @@ const Cart = () => {
           <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
             {cart.map((item) => (
               <div key={item._id} className="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2 position-relative">
-                <img src={item.image} alt={item.title} style={{ width: '60px', height: '60px', objectFit: 'contain' }} />
+                <img src={`https://testfrontendreact.netlify.app/assets${item.image}`}
+                  alt={item.title} style={{ width: '60px', height: '60px', objectFit: 'contain' }} />
                 <div className="flex-grow-1 mx-3">
                   <h6 className="mb-1">{item.title}</h6>
                   <small>{item.name}</small><br />
@@ -97,7 +98,7 @@ const Cart = () => {
                 <textarea name="notes" className="form-control" placeholder="Notes (optional)" rows="2" value={form.notes} onChange={handleInputChange}></textarea>
               </div>
               <div className="col-12 text-end">
-                <button className="btn btn-pink text-white" style={{backgroundColor: 'palevioletred'}} onClick={handleSendOrder}>
+                <button className="btn btn-pink text-white" style={{ backgroundColor: 'palevioletred' }} onClick={handleSendOrder}>
                   Send Order via WhatsApp
                 </button>
               </div>
