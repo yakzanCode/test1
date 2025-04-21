@@ -198,8 +198,8 @@ function ProductDetails() {
     const emptyStars = totalStars - filledStars;
 
     const stars = [
-      ...Array(filledStars).fill(<i className="bi bi-star-fill text-pink"></i>),
-      ...Array(emptyStars).fill(<i className="bi bi-star text-pink"></i>)
+      ...Array(filledStars).fill(<i className="bi bi-star-fill text-darkred"></i>),
+      ...Array(emptyStars).fill(<i className="bi bi-star text-darkred"></i>)
     ];
 
     return stars;

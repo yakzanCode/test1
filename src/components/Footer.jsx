@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
-    <footer className="bg-pink d-flex align-items-center">
+    <footer className="bg-darkred d-flex align-items-center">
       <div className="container-fluid text-white">
         <div className="row py-4 gy-3">
           <div className="col-md-3 col-6">

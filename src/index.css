@@ -36,7 +36,7 @@ body {
   color: white;
   border-radius: 50%;
   font-size: 28px;
-  padding: 4px 10px;
+  padding: 3px 10px;
   z-index: 9999;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   text-align: center;
@@ -62,11 +62,11 @@ a:hover {
   color: #0056b3;
 }
 
-.text-pink {
+.text-darkred {
   color: darkred;
 }
 
-.bg-pink {
+.bg-darkred {
   background-color: darkred;
 }
 

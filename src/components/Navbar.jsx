@@ -5,17 +5,20 @@ function Navbar() {
     return (
 
         <>
-            <div id="topBarCarousel" className="carousel slide text-center" data-bs-ride="carousel">
-                <div className="carousel-inner bg-dark text-white py-1" style={{fontSize: '12px'}}>
+            <div className="carousel slide carousel-fade text-center" data-bs-ride="carousel">
+                <div className="carousel-inner bg-dark text-white py-1 text-uppercase" style={{fontSize: '12px'}}>
                     <div className="carousel-item active">
-                        FREE DELIVERY FOR ORDERS ABOVE $50 <i className='bi bi-truck'></i>
+                        💥 Get 10% off your first order!
                     </div>
                     <div className="carousel-item">
-                        Check out our newest arrivals! 🚘 Your dream car is just a click away!
+                        🚚 free delivery for orders above $50
+                    </div>
+                    <div className="carousel-item">
+                        ✨ Check out our newest arrivals!
                     </div>
                 </div>
             </div>
-            <nav className="navbar navbar-expand-md sticky-top bg-pink nav-underline">
+            <nav className="navbar navbar-expand-md sticky-top bg-darkred nav-underline">
                 <div className="container-fluid">
                     <a className="d-md-none border-0" type="button" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
                         aria-controls="offcanvasExample">
@@ -53,25 +56,25 @@ function Navbar() {
                 aria-labelledby="offcanvasExampleLabel">
                 <i className="bi bi-x-lg fw-bolder fs-3 btn ms-auto mt-2 me-1" data-bs-dismiss="offcanvas" aria-label="Close"></i>
                 <div className="offcanvas-header">
-                    <h1 className="offcanvas-title fw-bolder text-pink" id="offcanvasExampleLabel">
+                    <h1 className="offcanvas-title fw-bolder text-darkred" id="offcanvasExampleLabel">
                         AHMAD'S STORE
                     </h1>
                 </div>
                 <div className="offcanvas-body d-flex flex-column">
                     <ul className="p-0 g-0 mb-0 row offcanvas-list list-unstyled" data-bs-dismiss="offcanvas">
-                        <li className="border-0 d-flex"><Link className='text-decoration-none text-pink' to="/"><span className="nav-link fs-6 fw-bold">HOME</span></Link></li>
-                        <li className="border-0 d-flex my-4"><Link className='text-decoration-none text-pink' to="/products"><span className="nav-link fs-6 fw-bold">ALL PRODUCTS</span></Link></li>
-                        <li className="border-0 d-flex"><Link className='text-decoration-none text-pink' to="/"><span className="nav-link fs-6 fw-bold">HIGHLIGHTS</span></Link></li>
+                        <li className="border-0 d-flex"><Link className='text-decoration-none text-darkred' to="/"><span className="nav-link fs-6 fw-bold">HOME</span></Link></li>
+                        <li className="border-0 d-flex my-4"><Link className='text-decoration-none text-darkred' to="/products"><span className="nav-link fs-6 fw-bold">ALL PRODUCTS</span></Link></li>
+                        <li className="border-0 d-flex"><Link className='text-decoration-none text-darkred' to="/"><span className="nav-link fs-6 fw-bold">HIGHLIGHTS</span></Link></li>
                     </ul>
 
-                    <p className="border-0 d-flex text-pink mb-2 mt-4" href="#collapseExample" role='button' data-bs-toggle="collapse"><span className='text-decoration-none fs-6 fw-bold'>CATEGORIES</span><i className='bi bi-plus-lg ms-auto'></i></p>
+                    <p className="border-0 d-flex text-darkred mb-2 mt-4" href="#collapseExample" role='button' data-bs-toggle="collapse"><span className='text-decoration-none fs-6 fw-bold'>CATEGORIES</span><i className='bi bi-plus-lg ms-auto'></i></p>
                     <div className="collapse list-unstyled w-100 ps-3" id="collapseExample">
-                        <li><Link className='text-pink fw-semibold text-decoration-none' to="/categories/category">Tshirts</Link></li>
-                        <li><Link className='text-pink fw-semibold text-decoration-none' to="/categories/category">Pants</Link></li>
-                        <li><Link className='text-pink fw-semibold text-decoration-none' to="/categories/category">Underwear</Link></li>
+                        <li><Link className='text-darkred fw-semibold text-decoration-none' to="/categories/category">Tshirts</Link></li>
+                        <li><Link className='text-darkred fw-semibold text-decoration-none' to="/categories/category">Pants</Link></li>
+                        <li><Link className='text-darkred fw-semibold text-decoration-none' to="/categories/category">Underwear</Link></li>
                     </div>
 
-                    <span className="mt-auto"><Link to="/cart"><span className="nav-link fs-4 fw-bold text-pink"><i className='bi bi-cart2 text-pink'></i></span></Link></span>
+                    <span className="mt-auto"><Link to="/cart"><span className="nav-link fs-4 fw-bold text-darkred"><i className='bi bi-cart2 text-darkred'></i></span></Link></span>
                 </div>
             </div>
         </>
