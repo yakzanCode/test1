@@ -6,6 +6,28 @@ body {
   padding: 0;
 }
 
+
+.recommended-card {
+  width: 200px !important;
+  height: 330px !important;
+  display: flex !important;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.recommended-card img {
+  width: 170px;
+  height: 170px;
+  object-fit: contain;
+}
+
+.slick-dots {
+  position: relative !important;
+}
+
+
+
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
@@ -41,16 +63,13 @@ a:hover {
 }
 
 .text-pink {
-  color: palevioletred;
+  color: darkred;
 }
 
 .bg-pink {
-  background-color: palevioletred;
+  background-color: darkred;
 }
 
-.bg-pinko {
-  background-color: palevioletred;
-}
 .ellipsis {
   white-space: nowrap;
   overflow: hidden;

@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <div className="app-layout">
       {!hideBackButton && (
-        <button onClick={() => navigate(-1)} className="btn btn-light mt-2">
+        <button onClick={() => navigate(-1)} className="btn btn-light mt-2 ms-2">
           ← Back
         </button>
       )}

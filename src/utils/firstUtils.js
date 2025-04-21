@@ -90,7 +90,7 @@ export const sendOrderViaWhatsApp = (form, cart, cartTotal) => {
 
   // Construct WhatsApp message
   const message = `
-🔴🔴🔴   *New Order*   🔴🔴🔴
+🔴🔴🔴     *New Order*     🔴🔴🔴
 
 👤 Name: ${firstName} ${lastName}
 
@@ -99,10 +99,12 @@ export const sendOrderViaWhatsApp = (form, cart, cartTotal) => {
 📞 Phone: ${phone || '-----------------'}
 
 📝 Notes: ${notes || '-----------------'}
-——————————————————
+———————————————————
+
 🧾 Order:
 ${productLines}
-——————————————————
+
+———————————————————
 💰 Total: $${cartTotal.toFixed(2)}
   `.trim();
 

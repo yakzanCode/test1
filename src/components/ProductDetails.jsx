@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import {
   getCart,
   findInCart,
@@ -18,6 +22,7 @@ function ProductDetails() {
   const [similarProducts, setSimilarProducts] = useState([]);
   const [selectedSize, setSelectedSize] = useState('');
   const [showAddedMsg, setShowAddedMsg] = useState(false);
+  const [recommendedProducts, setRecommendedProducts] = useState([]);
 
   const increment = () => {
     if (!selectedSize) {
@@ -46,9 +51,95 @@ function ProductDetails() {
     }
   };
 
+  const settings = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    centerMode: true,
+    speed: 500,
+    autoplay: true,
+    responsive: [
+      {
+        breakpoint: 1400, // Bootstrap XL (≥1400px)
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+
+        }
+      },
+      {
+        breakpoint: 1200, // Bootstrap LG (≥1200px)
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          centerPadding: "0"
+        }
+      },
+      {
+        breakpoint: 1050, // Bootstrap MD (≥992px)
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          centerPadding: "20px"
+        }
+      },
+      {
+        breakpoint: 885, // Bootstrap MD (≥992px)
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerPadding: "70px",
+        }
+      },
+      {
+        breakpoint: 780, // Bootstrap SM (≥768px)
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerPadding: "40px"
+        }
+      },
+      {
+        breakpoint: 720, // Bootstrap SM (≥768px)
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          centerPadding: "80px"
+        }
+      },
+      {
+        breakpoint: 600, // Bootstrap SM (≥768px)
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          centerPadding: "50px"
+        }
+      },
+      {
+        breakpoint: 550, // Bootstrap XS (≥576px)
+        settings: {
+          slidesToShow: 2, // To show part of next card
+          slidesToScroll: 2,
+          centerPadding: "20px"
+        }
+      },
+      {
+        breakpoint: 480, // Smaller devices
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          centerPadding: "0"
+        }
+      }
+    ]
+
+  };
+
+
 
   useEffect(() => {
     const fetchProduct = async () => {
+      // setLoading(true);
       try {
         const response = await fetch(`https://shop-o510.onrender.com/api/products/${id}`);
         const data = await response.json();
@@ -71,6 +162,13 @@ function ProductDetails() {
           const similarData = await similarRes.json();
           setSimilarProducts(similarData);
 
+          // Fetch recommended products
+          const recommendedRes = await fetch(
+            `https://shop-o510.onrender.com/api/products/category/${data.category}`
+          );
+          const recommendedData = await recommendedRes.json();
+          setRecommendedProducts(recommendedData);
+
           setLoading(false);
         }
       } catch (error) {
@@ -84,9 +182,9 @@ function ProductDetails() {
 
   const handleAddToCart = () => {
     if (!selectedSize) return;
-  
+
     const productWithSize = { ...product, selectedSize }; // Include selected size with product
-  
+
     // Correctly passing the product object with size and quantity
     addToCart(productWithSize, quantity);
     setInCart(true);
@@ -129,7 +227,7 @@ function ProductDetails() {
         <div className="col-md-6 p-0">
           <p className="text-secondary p-2">{product.description}</p>
 
-          <div className="d-flex bg-body-tertiary my-3" style={{ padding: '14px 0 7px 0' }}>
+          <div className="d-flex bg-body-tertiary my-4" style={{ padding: '14px 0 7px 0' }}>
             {product.price !== undefined &&
               product.price !== 0 &&
               product.price !== product.priceAfterSale && (
@@ -144,29 +242,15 @@ function ProductDetails() {
                   <span className="m-auto">save {product.salePercent}%</span>
                 </div>
               )}
+            <h6 className="fw-bold ms-auto">
+              {renderStars(product.rating)}
+              <span className="text-secondary"> {product.reviewsCount}</span>
+            </h6>
           </div>
 
           <div className='p-2'>
-            <div className="fw-bold" style={{ fontSize: '15px' }}>
-              <span
-                className="text-secondary"
-                style={{
-                  border: 'none',
-                  borderRadius: '4px',
-                  padding: '0px 4px',
-                  background: 'linear-gradient(to right,rgba(233, 88, 144, 0.71),rgba(233, 88, 144, 0.25),rgba(233, 88, 144, 0))'
-                }}
-              >
-                {product.salesCount} items sold <i className="bi bi-fire text-pink"></i>
-              </span>
-              <span className="float-end">
-                {renderStars(product.rating)}
-                <span className="text-secondary"> {product.reviewsCount}</span>
-              </span>
-            </div>
-
             {/* Similar Products (Product Image Boxes) */}
-            <div className="mt-4">
+            <div className="mb-4">
               <h6>Available Colors:</h6>
               <div className="d-flex flex-wrap justify-content-start gap-2">
                 {similarProducts.length > 0 ? (
@@ -216,7 +300,7 @@ function ProductDetails() {
             </div>
 
             {product.sizes?.length > 0 && (
-              <div className="mt-3">
+              <div>
                 <h6>Available Sizes:</h6>
                 <div className="d-flex gap-2 flex-wrap">
                   {product.sizes.map((size) => (
@@ -264,6 +348,34 @@ function ProductDetails() {
           </div>
 
         </div>
+
+      </div>
+      <div className="my-5 row">
+        <h5 className='text-center'>SIMILAR PRODUCTS</h5>
+        <p className='text-muted text-center mb-5'>Customers who view this prodcut also viewed</p>
+        {recommendedProducts.length > 0 && (
+          <Slider {...settings}>
+            {recommendedProducts.slice(0, 5).map((recommendedProduct) => (
+
+              <div key={recommendedProduct._id} className="recommended-card bg-body-tertiary text-center">
+                <img className='mx-auto' src={`https://yakzancode.github.io/test1/src/assets/${recommendedProduct.image}`} alt={recommendedProduct.name} />
+                <h6 className='mb-auto'>{recommendedProduct.name}</h6>
+                <div className='mb-2'>
+                  {recommendedProduct.price != null &&
+                    recommendedProduct.priceAfterSale != null &&
+                    recommendedProduct.priceAfterSale < recommendedProduct.price && (
+                      <s className="text-danger me-2">{recommendedProduct.price} €</s>
+                    )}
+                  {recommendedProduct.priceAfterSale != null && (
+                    <span>{recommendedProduct.priceAfterSale} €</span>
+                  )}
+                </div>
+                <button className='btn btn-outline-dark w-100 rounded-pill' onClick={() => navigate(`/product/${recommendedProduct._id}`)}>View</button>
+              </div>
+
+            ))}
+          </Slider>
+        )}
       </div>
     </div>
   );
