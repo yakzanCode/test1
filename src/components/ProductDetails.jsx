@@ -238,11 +238,11 @@ function ProductDetails() {
             <h6 className="mx-1">${product.priceAfterSale.toFixed(2)}</h6>
             {product.salePercent !== undefined &&
               product.salePercent !== 0 && (
-                <div className="d-flex border border-dark" style={{ width: '50px', height: '17px', fontSize: '10px', marginTop: '2px', borderRadius: '2px' }}>
+                <div className="d-flex border border-dark mx-2" style={{ width: '50px', height: '17px', fontSize: '10px', marginTop: '1px', borderRadius: '2px' }}>
                   <span className="m-auto">save {product.salePercent}%</span>
                 </div>
               )}
-            <h6 className="fw-bold ms-auto">
+            <h6 className="fw-bold ms-auto me-2">
               {renderStars(product.rating)}
               <span className="text-secondary"> {product.reviewsCount}</span>
             </h6>
@@ -319,7 +319,7 @@ function ProductDetails() {
 
             {/* Quantity Controls */}
             <button
-              className="btn border mt-4 w-100 d-flex justify-content-between"
+              className="btn border mt-4 mb-3 w-100 d-flex justify-content-between"
               disabled={!selectedSize}
             >
               <i onClick={decrement} className="bi bi-dash"></i>
@@ -328,7 +328,7 @@ function ProductDetails() {
             </button>
 
             {/* Add to Cart Button */}
-            <button className="btn btn-dark w-100 mt-2"
+            <button className="btn btn-dark w-100 mb-2"
               disabled={loading || (!selectedSize && product.sizes?.length > 0)}
               onClick={handleAddToCart}>
               <h6 className="m-0 py-2">
