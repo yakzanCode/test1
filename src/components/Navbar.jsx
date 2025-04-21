@@ -5,7 +5,7 @@ function Navbar() {
     return (
 
         <>
-            <div className="carousel slide carousel-fade text-center" data-bs-ride="carousel">
+            <div className="carousel slide text-center" data-bs-ride="carousel">
                 <div className="carousel-inner bg-dark text-white py-1 text-uppercase" style={{fontSize: '12px'}}>
                     <div className="carousel-item active">
                         💥 Get 10% off your first order!
