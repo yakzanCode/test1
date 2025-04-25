@@ -7,6 +7,7 @@ function Home() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     const fetchFeatured = async () => {
       try {
