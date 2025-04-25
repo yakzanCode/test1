@@ -7,11 +7,13 @@ import ProductDetails from './components/ProductDetails';
 import Cart from './components/Cart';
 import Navbar from './components/Navbar';
 import Layout from './components/Layout';
+import Promobar from './components/Promobar';
 
 function App() {
   return (
     <div>
       <Router> {/* Wrap everything inside Router */}
+        <Promobar />
         <Navbar />
         <Routes>
           <Route path="/" element={<Layout />}>

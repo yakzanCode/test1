@@ -71,7 +71,8 @@ function CardComponent({ product }) {
               )}
             <h5 className="fs-6 mx-1">{product.priceAfterSale.toFixed(2)}$</h5>
           </div>
-          <button className="w-100 btn btn-dark"
+          <button className="w-100 btn btn-white shadow text-darkred"
+          style={{color:"cornflowerblue"}}
             onClick={handleViewDetails}>
             <h6 className="m-0 py-2">
               <i className="bi bi-bag-fill me-1"></i>

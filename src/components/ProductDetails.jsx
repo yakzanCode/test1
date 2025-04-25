@@ -126,9 +126,9 @@ function ProductDetails() {
       {
         breakpoint: 480, // Smaller devices
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          centerPadding: "0"
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerPadding: "90px"
         }
       }
     ]
@@ -175,6 +175,7 @@ function ProductDetails() {
         console.error('Error fetching product:', error);
         setLoading(false);
       }
+      window.scrollTo(0, 0);
     };
 
     fetchProduct();
@@ -370,7 +371,12 @@ function ProductDetails() {
                     <span>{recommendedProduct.priceAfterSale} €</span>
                   )}
                 </div>
-                <button className='btn btn-outline-dark w-100 rounded-pill' onClick={() => navigate(`/product/${recommendedProduct._id}`)}>View</button>
+                <button className='btn btn-outline-dark w-100 rounded-pill'
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    navigate(`/product/${recommendedProduct._id}`)}}>
+                    View
+                </button>
               </div>
 
             ))}

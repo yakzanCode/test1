@@ -7,6 +7,94 @@ body {
 }
 
 
+/* Cornflowerblue Navbar (default state) */
+.navbar {
+  background-color: cornflowerblue !important;
+}
+
+
+
+
+.hero-section {
+  position: relative;
+  min-height: 87vh;
+  background: url('/src/assets/beach-bg.png') no-repeat center center/cover;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+
+.hero-content h1 {
+  margin-top: 10vh;
+}
+
+.hero-content {
+  animation: fadeInSlide 1s ease-in-out both;
+}
+
+.palm {
+  position: absolute;
+  bottom: 0;
+  width: 30vw;
+  opacity: 0;
+  animation: fadeInSlide 1.5s ease-out forwards;
+}
+
+.palm-top-left {
+  top: 0;
+  left: 0;
+  animation-delay: 0.3s;
+}
+
+.palm-bottom-left {
+  bottom: 0;
+  left: 0;
+  animation-delay: 1.2s;
+}
+
+.palm-top-right {
+  top: 0;
+  right: 0;
+  animation-delay: 0.6s;
+}
+
+.palm-bottom-right {
+  bottom: 0;
+  right: 0;
+  animation-delay: 0.9s;
+}
+
+.palm img {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-content {
+  z-index: 1;
+}
+
+
 .recommended-card {
   width: 200px !important;
   height: 330px !important;
@@ -55,19 +143,19 @@ h2, h3 {
 
 a {
   text-decoration: none;
-  color: #007bff;
+  color: cornflowerblue;
 }
 
 a:hover {
-  color: #0056b3;
+  color: cornflowerblue;
 }
 
 .text-darkred {
-  color: darkred;
+  color: cornflowerblue;
 }
 
 .bg-darkred {
-  background-color: darkred;
+  background-color: cornflowerblue;
 }
 
 .ellipsis {

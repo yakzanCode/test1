@@ -1,24 +1,37 @@
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 function Navbar() {
-    // className='container-fluid p-0' style={{overflowY: 'scroll'}}
+    const location = useLocation();
+    const isHome = location.pathname === '/';
+    const [scrolled, setScrolled] = useState(false);
+
+    const handleScroll = () => {
+        // Get the height of the hero section
+        const heroHeight = document.querySelector('.hero-section').offsetHeight;
+        if (window.scrollY > heroHeight) {
+            setScrolled(true);  // Add the 'scrolled' class if scrolled past hero section
+        } else {
+            setScrolled(false); // Remove the 'scrolled' class if above the hero section
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        // Cleanup the event listener on component unmount
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
 
         <>
-            <div className="carousel slide text-center" data-bs-ride="carousel">
-                <div className="carousel-inner bg-dark text-white py-1 text-uppercase" style={{fontSize: '12px'}}>
-                    <div className="carousel-item active">
-                        💥 Get 10% off your first order!
-                    </div>
-                    <div className="carousel-item">
-                        🚚 free delivery for orders above $50
-                    </div>
-                    <div className="carousel-item">
-                        ✨ Check out our newest arrivals!
-                    </div>
-                </div>
-            </div>
-            <nav className="navbar navbar-expand-md sticky-top bg-darkred nav-underline">
+            <nav className={`navbar navbar-expand-md nav-underline ${isHome
+                    ? scrolled
+                        ? 'sticky-top'
+                        : 'fixed-top mt-3 bg-transparent'
+                    : 'sticky-top'
+                }`}>
                 <div className="container-fluid">
                     <a className="d-md-none border-0" type="button" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
                         aria-controls="offcanvasExample">
