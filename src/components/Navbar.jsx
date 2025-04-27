@@ -7,7 +7,8 @@ function Navbar() {
     const [scrolled, setScrolled] = useState(false);
 
     const handleScroll = () => {
-        const promoHeight = document.querySelector('.promobar').offsetHeight;
+        const promoBar = document.querySelector('.promobar');
+        const promoHeight = promoBar ? promoBar.offsetHeight : 0;
         if (window.scrollY > promoHeight) {
             setScrolled(true); 
         } else {
