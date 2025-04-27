@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import CardComponent from './Card';
 
 import {
   getCart,
@@ -26,7 +27,7 @@ function ProductDetails() {
 
   const increment = () => {
     if (!selectedSize) {
-      // Optionally, show a message or just return
+      alert("Please select a size");
       return;
     }
     const newQty = quantity + 1;
@@ -38,7 +39,7 @@ function ProductDetails() {
 
   const decrement = () => {
     if (!selectedSize) {
-      // Optionally, show a message or just return
+      alert("Please select a size");
       return;
     }
     if (quantity > 1) {
@@ -194,19 +195,30 @@ function ProductDetails() {
   };
 
   const renderStars = (rating) => {
-    const totalStars = 5;
     const filledStars = Math.round(rating);
-    const emptyStars = totalStars - filledStars;
+    const emptyStars = 5 - filledStars;
 
-    const stars = [
-      ...Array(filledStars).fill(<i className="bi bi-star-fill text-darkred"></i>),
-      ...Array(emptyStars).fill(<i className="bi bi-star text-darkred"></i>)
-    ];
-
-    return stars;
+    return (
+      <>
+        {/* [...Array(filledStars).fill(<i className="bi bi-star-fill text-darkred"></i>),
+        ...Array(emptyStars).fill(<i className="bi bi-star text-darkred"></i>)] */}
+        {[...Array(filledStars)].map((_, idx) => (
+          <i key={idx} className="bi bi-star-fill text-darkred"></i>
+        ))}
+        {[...Array(emptyStars)].map((_, idx) => (
+          <i key={idx} className="bi bi-star text-darkred"></i>
+        ))}
+      </>
+    );
   };
 
-  if (loading) return <p className="text-center my-5">Loading product details...</p>;
+
+  if (loading) return
+  <div className="d-flex justify-content-center align-items-center">
+    <div className="spinner-border text-primary" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </div>
+  </div>;
   if (!product) return <p className="text-center my-5">Product not found.</p>;
 
   return (
@@ -355,30 +367,14 @@ function ProductDetails() {
         <h5 className='text-center'>SIMILAR PRODUCTS</h5>
         <p className='text-muted text-center mb-5'>Customers who view this prodcut also viewed</p>
         {recommendedProducts.length > 0 && (
+          //   <Slider {...settings}>
+          //   {featuredProducts.map(product => (
+          //     <CardComponent key={product._id} product={product} addToCart={addToCart} />
+          //   ))}
+          // </Slider>
           <Slider {...settings}>
             {recommendedProducts.slice(0, 5).map((recommendedProduct) => (
-
-              <div key={recommendedProduct._id} className="recommended-card bg-body-tertiary text-center">
-                <img className='mx-auto' src={`https://yakzancode.github.io/test1/src/assets/${recommendedProduct.image}`} alt={recommendedProduct.name} />
-                <h6 className='mb-auto'>{recommendedProduct.name}</h6>
-                <div className='mb-2'>
-                  {recommendedProduct.price != null &&
-                    recommendedProduct.priceAfterSale != null &&
-                    recommendedProduct.priceAfterSale < recommendedProduct.price && (
-                      <s className="text-danger me-2">{recommendedProduct.price} €</s>
-                    )}
-                  {recommendedProduct.priceAfterSale != null && (
-                    <span>{recommendedProduct.priceAfterSale} €</span>
-                  )}
-                </div>
-                <button className='btn btn-outline-dark w-100 rounded-pill'
-                  onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    navigate(`/product/${recommendedProduct._id}`)}}>
-                    View
-                </button>
-              </div>
-
+              <CardComponent key={recommendedProduct._id} product={recommendedProduct} addToCart={addToCart} />
             ))}
           </Slider>
         )}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { addToCart } from '../utils/firstUtils.js';
 import CardComponent from './Card';
+import { div } from 'framer-motion/client';
 
 function ProductsList() {
   const [products, setProducts] = useState([]);
@@ -29,13 +30,15 @@ function ProductsList() {
   return (
     <div className='container'>
       <h2 className='text-center mt-2 mb-5'>All Products</h2>
-      <div className="row">
+      <div className="row g-2">
         {products.map((product) => (
-          <CardComponent 
-            key={product._id} 
-            product={product} 
-            addToCart={addToCart} 
-          />
+          <div className='col-md-4 col-6 col-xs-12'>
+            <CardComponent
+              key={product._id}
+              product={product}
+              addToCart={addToCart}
+            />
+          </div>
         ))}
       </div>
     </div>

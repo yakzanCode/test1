@@ -7,19 +7,17 @@ function Navbar() {
     const [scrolled, setScrolled] = useState(false);
 
     const handleScroll = () => {
-        // Get the height of the hero section
-        const heroHeight = document.querySelector('.hero-section').offsetHeight;
-        if (window.scrollY > heroHeight) {
-            setScrolled(true);  // Add the 'scrolled' class if scrolled past hero section
+        const promoHeight = document.querySelector('.promobar').offsetHeight;
+        if (window.scrollY > promoHeight) {
+            setScrolled(true); 
         } else {
-            setScrolled(false); // Remove the 'scrolled' class if above the hero section
+            setScrolled(false);
         }
     };
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
 
-        // Cleanup the event listener on component unmount
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -28,8 +26,8 @@ function Navbar() {
         <>
             <nav className={`navbar navbar-expand-md nav-underline ${isHome
                     ? scrolled
-                        ? 'sticky-top'
-                        : 'fixed-top mt-3 bg-transparent'
+                        ? 'fixed-top'
+                        : 'fixed-top mt-4 bg-transparent'
                     : 'sticky-top'
                 }`}>
                 <div className="container-fluid">

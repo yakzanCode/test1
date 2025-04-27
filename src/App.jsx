@@ -8,7 +8,6 @@ import Cart from './components/Cart';
 import Navbar from './components/Navbar';
 import Layout from './components/Layout';
 import Promobar from './components/Promobar';
-import Parallax from './components/Parallax.jsx';
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="/parallax" element={<Parallax />} />
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ProductsList />} />
             <Route path="/product/:id" element={<ProductDetails />} />
