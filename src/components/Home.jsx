@@ -25,15 +25,14 @@ function Home() {
         breakpoint: 1400, // Bootstrap XL (≥1400px)
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 1,
-
+          slidesToScroll: 1
         }
       },
       {
         breakpoint: 1200, // Bootstrap LG (≥1200px)
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 1,
+          slidesToScroll: 1
           // centerPadding: "0"
         }
       },
@@ -41,7 +40,7 @@ function Home() {
         breakpoint: 992, // Bootstrap MD (≥992px)
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToScroll: 1
           // centerPadding: "70px",
         }
       },
@@ -49,15 +48,15 @@ function Home() {
         breakpoint: 768, // Bootstrap SM (≥768px)
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
-          centerPadding: "80px"
+          slidesToScroll: 1
+          // centerPadding: "80px"
         }
       },
       {
         breakpoint: 576, // Bootstrap XS (≥576px)
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 2
           // centerPadding: "20px"
         }
       },
@@ -65,7 +64,7 @@ function Home() {
         breakpoint: 480,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToScroll: 1
           // centerPadding: "90px"
         }
       }
