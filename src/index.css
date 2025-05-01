@@ -7,6 +7,37 @@ body {
 }
 
 
+.btn-outline-blue {
+  border-color: cornflowerblue;
+  background-color: transparent;
+  color: cornflowerblue;
+  transition: opacity 0.3s ease;
+}
+
+.btn-outline-blue:hover, .btn-outline-blue:active {
+  border-color: cornflowerblue;
+  background-color: cornflowerblue;
+  color: white;
+}
+
+
+.btn-blue {
+  border-color: cornflowerblue;
+  background-color: cornflowerblue;
+  color: white;
+  transition: opacity 0.3s ease;
+}
+
+.btn-blue:hover {
+opacity: 0.8;
+}
+
+.btn-blue:active {
+  border-color: cornflowerblue;
+  background-color: transparent;
+  color: cornflowerblue;
+}
+
 /* Cornflowerblue Navbar (default state) */
 .navbar {
   background-color: cornflowerblue !important;
@@ -114,7 +145,22 @@ body {
   position: relative !important;
 }
 
+.slick-dots li button {
+  color: cornflowerblue !important; 
+  background-color: transparent !important; 
+}
 
+.slick-dots li.slick-active button {
+  color: cornflowerblue !important; 
+}
+
+.slick-dots li button:focus {
+  outline: none; 
+}
+
+.slick-dots li button:before {
+  color: cornflowerblue !important;
+}
 
 .whatsapp-float {
   position: fixed;
@@ -163,3 +209,5 @@ a:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+

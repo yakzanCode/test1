@@ -10,9 +10,11 @@ const Layout = () => {
   return (
     <div className="app-layout">
       {!hideBackButton && (
-        <button onClick={() => navigate(-1)} className="btn btn-light mt-2 ms-2">
-          ← Back
-        </button>
+        <div className="p-2 mt-2 ms-2 fw-semibold"
+          onClick={() => navigate(-1)}
+          style={{ fontSize: '12px', cursor: 'pointer' }}>
+          <i className='bi bi-caret-left'></i> back
+        </div>
       )}
       <Outlet />
     </div>

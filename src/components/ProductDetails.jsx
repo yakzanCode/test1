@@ -4,13 +4,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CardComponent from './Card';
-
-import {
-  getCart,
-  findInCart,
-  addToCart,
-  updateCartItem
-} from '../utils/firstUtils';
+import { getProductById, getRecommendedProducts, getSimilarProducts } from '../services/api';
+import { findInCart, addToCart, updateCartItem } from '../utils/firstUtils';
 
 function ProductDetails() {
   const { id } = useParams();
@@ -137,46 +132,32 @@ function ProductDetails() {
   };
 
 
-
   useEffect(() => {
     const fetchProduct = async () => {
-      // setLoading(true);
+      setLoading(true);
       try {
-        const response = await fetch(`https://shop-o510.onrender.com/api/products/${id}`);
-        const data = await response.json();
+        const data = await getProductById(id);
+        setProduct(data);
 
-        if (data) {
-          setProduct(data);
+        const found = findInCart(data._id);
+        setInCart(!!found);
+        setQuantity(found?.quantity || 1);
 
-          const found = findInCart(data._id);
-          if (found) {
-            setInCart(true);
-            setQuantity(found.quantity || 1);
-          } else {
-            setQuantity(1);
-          }
+        const similar = await getSimilarProducts(data.name, data._id);
+        setSimilarProducts(similar);
 
-          // Fetch similar products by name, excluding this product's ID
-          const similarRes = await fetch(
-            `https://shop-o510.onrender.com/api/products/similar?name=${encodeURIComponent(data.name)}&id=${data._id}`
-          );
-          const similarData = await similarRes.json();
-          setSimilarProducts(similarData);
+        console.log(data);
+        
 
-          // Fetch recommended products
-          const recommendedRes = await fetch(
-            `https://shop-o510.onrender.com/api/products/category/${data.category}`
-          );
-          const recommendedData = await recommendedRes.json();
-          setRecommendedProducts(recommendedData);
+        const recommended = await getRecommendedProducts(data.category.name);
+        setRecommendedProducts(recommended);
 
-          setLoading(false);
-        }
       } catch (error) {
         console.error('Error fetching product:', error);
+      } finally {
         setLoading(false);
+        window.scrollTo(0, 0);
       }
-      window.scrollTo(0, 0);
     };
 
     fetchProduct();

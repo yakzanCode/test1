@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { getCategories } from '../services/api';
 
 function Navbar() {
     const location = useLocation();
     const isHome = location.pathname === '/';
     const [scrolled, setScrolled] = useState(false);
+    const [categories, setCategories] = useState([]);
 
     const handleScroll = () => {
         // const promoBar = document.querySelector('.promobar');
-        // const promoHeight = promoBar ? promoBar.offsetHeight : 0;
+        // const promoHeight = promoBar ? promoBar.offsetHeight : 30;
         if (window.scrollY > 30) {
-            setScrolled(true); 
+            setScrolled(true);
         } else {
             setScrolled(false);
         }
@@ -22,14 +24,20 @@ function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        getCategories()
+          .then(setCategories)
+          .catch(err => console.error('Failed to fetch categories:', err));
+      }, []);
+
     return (
 
         <>
             <nav className={`navbar navbar-expand-md nav-underline ${isHome
-                    ? scrolled
-                        ? 'fixed-top'
-                        : 'fixed-top mt-4 bg-transparent'
-                    : 'sticky-top'
+                ? scrolled
+                    ? 'fixed-top'
+                    : 'fixed-top mt-4 bg-transparent'
+                : 'sticky-top'
                 }`}>
                 <div className="container-fluid">
                     <a className="d-md-none border-0" type="button" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
@@ -66,8 +74,8 @@ function Navbar() {
 
             <div className="offcanvas offcanvas-start" style={{ width: '300px' }} tabIndex="-1" id="offcanvasExample"
                 aria-labelledby="offcanvasExampleLabel">
-                <i className="bi bi-x-lg fw-bolder fs-3 btn ms-auto mt-2 me-1" data-bs-dismiss="offcanvas" aria-label="Close"></i>
-                <div className="offcanvas-header">
+                <i className="bi bi-x-lg btn position-absolute top-0 end-0" data-bs-dismiss="offcanvas" aria-label="Close"></i>
+                <div className="offcanvas-header px-1 mt-4">
                     <h1 className="offcanvas-title fw-bolder text-darkred" id="offcanvasExampleLabel">
                         AHMAD'S STORE
                     </h1>
@@ -75,15 +83,22 @@ function Navbar() {
                 <div className="offcanvas-body d-flex flex-column">
                     <ul className="p-0 g-0 mb-0 row offcanvas-list list-unstyled" data-bs-dismiss="offcanvas">
                         <li className="border-0 d-flex"><Link className='text-decoration-none text-darkred' to="/"><span className="nav-link fs-6 fw-bold">HOME</span></Link></li>
-                        <li className="border-0 d-flex my-4"><Link className='text-decoration-none text-darkred' to="/products"><span className="nav-link fs-6 fw-bold">ALL PRODUCTS</span></Link></li>
-                        <li className="border-0 d-flex"><Link className='text-decoration-none text-darkred' to="/"><span className="nav-link fs-6 fw-bold">HIGHLIGHTS</span></Link></li>
+                        <li className="border-0 d-flex my-3"><Link className='text-decoration-none text-darkred' to="/products"><span className="nav-link fs-6 fw-bold">ALL PRODUCTS</span></Link></li>
+                        <li className="border-0 d-flex"><Link className='text-decoration-none text-darkred' to="/products"><span className="nav-link fs-6 fw-bold">HIGHLIGHTS</span></Link></li>
                     </ul>
 
-                    <p className="border-0 d-flex text-darkred mb-2 mt-4" href="#collapseExample" role='button' data-bs-toggle="collapse"><span className='text-decoration-none fs-6 fw-bold'>CATEGORIES</span><i className='bi bi-plus-lg ms-auto'></i></p>
+                    <p className="border-0 d-flex text-darkred mb-2 mt-3" href="#collapseExample" role='button' data-bs-toggle="collapse"><span className='text-decoration-none fs-6 fw-bold'>CATEGORIES</span><i className='bi bi-plus-lg ms-auto'></i></p>
                     <div className="collapse list-unstyled w-100 ps-3" id="collapseExample">
-                        <li><Link className='text-darkred fw-semibold text-decoration-none' to="/categories/category">Tshirts</Link></li>
-                        <li><Link className='text-darkred fw-semibold text-decoration-none' to="/categories/category">Pants</Link></li>
-                        <li><Link className='text-darkred fw-semibold text-decoration-none' to="/categories/category">Underwear</Link></li>
+                        {categories.map((cat, index) => (
+                            <li key={index}>
+                                <Link
+                                    className='text-darkred fw-semibold text-decoration-none'
+                                    to={`/category/${cat.name}`}
+                                >
+                                    {cat.name}
+                                </Link>
+                            </li>
+                        ))}
                     </div>
 
                     <span className="mt-auto"><Link to="/cart"><span className="nav-link fs-4 fw-bold text-darkred"><i className='bi bi-cart2 text-darkred'></i></span></Link></span>
