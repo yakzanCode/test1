@@ -1,4 +1,6 @@
-const API_URL = 'http://localhost:3000/api';
+// const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://shop-o510.onrender.com/api';
+
 
 const fetchData = async (endpoint, method = 'GET', body = null) => {
   const config = {

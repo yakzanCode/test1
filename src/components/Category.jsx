@@ -10,11 +10,13 @@ function Category() {
     const { cat } = useParams();
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [category, setCategory] = useState(null);
     const [subcategories, setSubcategories] = useState([]);
     const [selectedSubcategory, setSelectedSubcategory] = useState('all');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setCategory(null);
         const fetchProductsByCategory = async () => {
             try {
                 const data = await getProductsByCategory(cat);
@@ -31,6 +33,15 @@ function Category() {
 
         fetchProductsByCategory();
     }, [cat]);
+
+    useEffect(() => {
+        if (products.length > 0 && products[0].category) {
+            setCategory(Array.isArray(products[0].category) ? products[0].category[0] : products[0].category);
+        } else {
+            setCategory(null);
+        }
+    }, [products]);
+
 
     const extractSubcategories = (products) => {
         const subs = [...new Set(products.map(product => product.subcategory).filter(Boolean))];
@@ -54,17 +65,20 @@ function Category() {
 
     return (
         <>
-            <div className='card border-0 text-uppercase' style={{ height: '30vh' }}>
-                <img alt={cat}
-                    src="/src/assets/bras.jpg"
-                    className='w-100 h-100'
-                    style={{ objectFit: 'cover' }} />
-                <div className="card-img-overlay d-flex flex-column justify-content-center text-center text-light fw-bold"
-                    style={{ background: 'rgba(0, 0, 0, 0.3)' }}>
-                    <h5 className='fs-1'>3 for 2 or 2nd -50%</h5>
-                    <small>--- On Selected {cat}---</small>
+            {category && category.video && (
+                <div className='card border-0 text-uppercase' style={{ height: '30vh' }}>
+                    <video autoPlay muted loop playsInline className='w-100 h-100' style={{ objectFit: 'cover' }}>
+                        <source src={`/src/assets/${category.video}`} type="video/mp4" />
+                    </video>
+                    <div className="card-img-overlay d-flex flex-column justify-content-center text-center text-light fw-bold"
+                        style={{ background: 'rgba(0, 0, 0, 0.3)' }}>
+                        <h5 className='fs-1'>3 for 2 or 2nd -50%</h5>
+                        <small>--- On Selected {cat} ---</small>
+                    </div>
                 </div>
-            </div>
+            )}
+
+
             <div className="container p-0 pb-5">
                 <h5 className="text-uppercase fw-bold my-3 ms-2">All {cat}</h5>
 
