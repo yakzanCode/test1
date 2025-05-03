@@ -56,7 +56,7 @@ const Cart = () => {
           <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
             {cart.map((item) => (
               <div key={`${item._id}-${item.selectedSize}`} className="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2 position-relative">
-                <img loading="lazy" src={`https://yakzancode.github.io/test1/src/assets/${item.image}`}
+                <img loading="lazy" src={`https://yakzancode.github.io/test1/public/assets/${item.image}`}
                   alt={item.name} style={{ width: '60px', height: '60px', objectFit: 'contain' }} />
                 <div className="flex-grow-1 mx-3">
                   <h6 className="mb-0">{item.name}</h6>

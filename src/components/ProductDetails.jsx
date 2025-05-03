@@ -210,7 +210,7 @@ function ProductDetails() {
           <h5 className='mt-3'>{product.name.toUpperCase()}</h5>
           <img
             loading="lazy"
-            src={`https://yakzancode.github.io/test1/src/assets/${product.image}`}
+            src={`https://yakzancode.github.io/test1/public/assets/${product.image}`}
             alt={product.name}
             className="img-fluid rounded-3"
             style={{ maxHeight: '400px', objectFit: 'contain' }}
@@ -257,7 +257,7 @@ function ProductDetails() {
                     >
                       <img
                         loading="lazy"
-                        src={`https://yakzancode.github.io/test1/src/assets/${similarProduct.image}`}
+                        src={`https://yakzancode.github.io/test1/public/assets/${similarProduct.image}`}
                         alt={similarProduct.name}
                         style={{
                           width: '80px',
@@ -278,7 +278,7 @@ function ProductDetails() {
                   >
                     <img
                       loading="lazy"
-                      src={`https://yakzancode.github.io/test1/src/assets/${product.image}`}
+                      src={`https://yakzancode.github.io/test1/public/assets/${product.image}`}
                       alt={product.name}
                       style={{
                         width: '80px',

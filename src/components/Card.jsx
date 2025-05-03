@@ -28,7 +28,7 @@ function CardComponent({ product }) {
     <div className="card border-0 p-3 m-1 bg-body-tertiary text-center" style={{ height: '350px' }} >
       <img
         loading="lazy"
-        src={`https://yakzancode.github.io/test1/src/assets/${product.image}`}
+        src={`https://yakzancode.github.io/test1/public/assets/${product.image}`}
         className="card-img-top"
         alt={product.name}
         style={{ height: '200px', objectFit: 'contain', cursor: 'pointer' }}
