@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://womenwears.netlify.app/sitemap.xml
