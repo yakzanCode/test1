@@ -115,44 +115,6 @@ opacity: 0.8;
   }
 }
 
-
-/* .palm {
-  position: absolute;
-  bottom: 0;
-  width: 30vw;
-  opacity: 0;
-  animation: fadeInSlide 1.5s ease-out forwards;
-}
-
-.palm-top-left {
-  top: 0;
-  left: 0;
-  animation-delay: 0.3s;
-}
-
-.palm-bottom-left {
-  bottom: 0;
-  left: 0;
-  animation-delay: 1.2s;
-}
-
-.palm-top-right {
-  top: 0;
-  right: 0;
-  animation-delay: 0.6s;
-}
-
-.palm-bottom-right {
-  bottom: 0;
-  right: 0;
-  animation-delay: 0.9s;
-}
-
-.palm img {
-  width: 100%;
-  height: auto;
-} */
-
 @keyframes fadeInSlide {
   from {
     opacity: 0;

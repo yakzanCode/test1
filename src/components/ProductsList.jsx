@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { addToCart } from '../utils/firstUtils.js';
-import CardComponent from './Card';
+import CardComponent from './Card.jsx';
 import { div } from 'framer-motion/client';
 
 function ProductsList() {

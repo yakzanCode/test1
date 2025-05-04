@@ -6,6 +6,48 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ahmad's Shop</title>
+
+  <!-- ✅ Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Ahmad's Shop",
+      "url": "https://yourdomain.com",
+      "logo": "https://yakzancode.github.io/test1/public/assets/logo1.png",
+      "image": "https://yakzancode.github.io/test1/public/assets/home2.jpg",
+      "description": "Trendy and comfortable women's underwear – shop bras, panties, and more.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hamburg",
+        "addressCountry": "DE"
+      },
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Popular Products",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Comfort Everyday Panty",
+              "image": "https://yakzancode.github.io/test1/public/assets/comfort-everyday-panty-beige.webp",
+              "description": "Soft black lace bralette with adjustable straps.",
+              "brand": {
+                "@type": "Brand",
+                "name": "Ahmad's Shop"
+              }
+            },
+            "priceCurrency": "USD",
+            "price": "11.69",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      }
+    }
+    </script>
+
 </head>
 
 <body>
