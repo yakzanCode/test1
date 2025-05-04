@@ -68,7 +68,7 @@ function Category() {
             {category && category.video && (
                 <div className='card border-0 text-uppercase' style={{ height: '30vh' }}>
                     <video autoPlay muted loop playsInline className='w-100 h-100' style={{ objectFit: 'cover' }}>
-                        <source src={`/public/assets/${category.video}`} type="video/mp4" />
+                        <source src={`https://yakzancode.github.io/test1/public/assets/${category.video}`} type="video/mp4" />
                     </video>
                     <div className="card-img-overlay d-flex flex-column justify-content-center text-center text-light fw-bold"
                         style={{ background: 'rgba(0, 0, 0, 0.3)' }}>
