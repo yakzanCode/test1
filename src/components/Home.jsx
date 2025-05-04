@@ -203,7 +203,7 @@ function Home() {
             <i className='bi bi-truck text-darkred'></i>
             <p>PAYMENT ON DELIVERY</p>
           </div>
-          <div className='d-flex position-relative mb-2 bg-danger' style={{ fontSize: '7px', width: '80px', height: '50px' }}>
+          <div className='d-flex position-relative mb-2' style={{ fontSize: '7px', width: '80px', height: '50px' }}>
             <div className="rounded-circle d-flex mx-auto bg-darkred text-white" style={{ width: '45px', height: '45px' }}>
               <p className='d-flex m-auto mb-4'>100%</p>
             </div>
