@@ -167,13 +167,13 @@ function Home() {
 
 
       {/* Featured Products */}
-      <section className="container-fluid px-5 my-5">
+      <section className="container-fluid my-5">
         <div className="text-center row">
           <h2>New Collection</h2>
           <p>Browse Our Products</p>
           <div className="text-end fw-semibold btn" style={{ color: 'cornflowerblue', fontSize: '12px' }} onClick={navigateToProducts}>View All <i className='bi bi-arrow-right'></i></div>
         </div>
-        <div className="row mt-3">
+        <div className="row mt-3 px-4">
           <Slider {...settings}>
             {featuredProducts.map(product => (
               <CardComponent key={product._id} product={product} addToCart={addToCart} />
@@ -199,20 +199,20 @@ function Home() {
 
       <div className="text-center my-4">
         <div className="d-flex justify-content-center align-items-center flex-wrap gap-4 mb-3">
-          <div className="text-center" style={{ fontSize: '8px', width: '50px' }}>
+          <div className="text-center" style={{ fontSize: '8px', width: '60px' }}>
             <i className='bi bi-truck text-darkred'></i>
             <p>PAYMENT ON DELIVERY</p>
           </div>
-          <div className='d-flex position-relative mb-2' style={{ fontSize: '7px', width: '70px', height: '50px' }}>
+          <div className='d-flex position-relative mb-2 bg-danger' style={{ fontSize: '7px', width: '80px', height: '50px' }}>
             <div className="rounded-circle d-flex mx-auto bg-darkred text-white" style={{ width: '45px', height: '45px' }}>
               <p className='d-flex m-auto mb-4'>100%</p>
             </div>
-            <p className='text-center position-absolute bottom-0 left-0 me-5 bg-body-tertiary mx-auto text-darkred' style={{ width: '72px' }}>QUALITY GUARANTEE</p>
+            <p className='position-absolute bottom-0 start-0 end-0 bg-body-tertiary mx-auto text-darkred' style={{ width: '72px' }}>QUALITY GUARANTEE</p>
           </div>
           <div className="text-center d-block" style={{ fontSize: '8px', width: '50px' }}>
             <p className="mb-0">PREMIUM</p>
             <i className='bi bi-star-fill text-darkred'></i><i className='bi bi-star-fill text-darkred'></i><i className='bi bi-star-fill text-darkred'></i><i className='bi bi-star-fill text-darkred'></i><i className='bi bi-star-fill text-darkred'></i>
-            <p className="mt-1">QUALITY</p>
+            <p>QUALITY</p>
           </div>
           <div className="text-center" style={{ fontSize: '8px', width: '50px' }}>
             <i className='bi bi-shield-fill-check text-darkred'></i>
