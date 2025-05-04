@@ -3,7 +3,7 @@ import { SitemapStream, streamToPromise } from 'sitemap';
 import { createWriteStream } from 'fs';
 import fetch from 'node-fetch'; // If using ESModules, make sure to install this: npm install node-fetch
 
-const hostname = 'https://yourdomain.com'; // Change to your production domain
+const hostname = 'https://womenwears.netlify.app'; // Change to your production domain
 const sitemap = new SitemapStream({ hostname });
 const writeStream = createWriteStream('./dist/sitemap.xml');
 
