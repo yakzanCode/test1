@@ -71,15 +71,6 @@ function Footer() {
           </div>
         </div>
       </div>
-      <a
-        href="https://wa.me/4915225763232"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="whatsapp-float"
-        aria-label="Chat on WhatsApp"
-      >
-        <i className="bi bi-whatsapp"></i>
-      </a>
     </footer>
   );
 }
