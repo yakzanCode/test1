@@ -125,6 +125,15 @@ function Home() {
     fetchAllProducts();
   }, []);
 
+  const getFormattedDate = (date) => {
+    const options = { weekday: 'short', month: 'short', day: 'numeric' };
+    return new Date(date).toLocaleDateString('en-US', options);
+  };
+
+    const today = new Date();
+    const twoDaysLater = new Date(today);
+    twoDaysLater.setDate(today.getDate() + 2);
+
   return (
     <div>
 
@@ -200,7 +209,7 @@ function Home() {
       <div className="text-center my-4">
         <div className="d-flex justify-content-center align-items-center flex-wrap gap-4 mb-3">
           <div className="text-center" style={{ fontSize: '8px', width: '60px' }}>
-            <i className='bi bi-truck text-darkred'></i>
+            <i className='bi bi-credit-card-fill text-darkred'></i>
             <p>PAYMENT ON DELIVERY</p>
           </div>
           <div className='d-flex position-relative mb-2' style={{ fontSize: '7px', width: '80px', height: '50px' }}>
@@ -226,7 +235,8 @@ function Home() {
 
         <div className='bg-light w-100 btn m-2 py-2'>
           <span className="small text-muted">
-            <i className="bi bi-truck text-dark"></i> Buy now to receive between <strong>Tue May 6</strong> - <strong>Thu May 8</strong>
+            <i className="bi bi-truck text-black me-1"></i>
+            Buy now to receive between <strong className='ms-1'>{getFormattedDate(today)}</strong> - <strong>{getFormattedDate(twoDaysLater)}</strong>
           </span>
         </div>
 

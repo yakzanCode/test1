@@ -60,8 +60,12 @@ function Category() {
     };
 
     if (loading) {
-        return <div className="container py-5 text-center"><p>Loading products...</p></div>;
-    }
+        return (
+          <div style={{ height: '100vh', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
+            <img src="/assets/loading.gif" alt="Loading…" className='objectfit-cover w-100 h-100'/>
+          </div>
+        );
+      }
 
     return (
         <>

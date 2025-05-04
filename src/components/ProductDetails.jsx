@@ -58,7 +58,7 @@ function ProductDetails() {
       {
         breakpoint: 1400, // Bootstrap XL (≥1400px)
         settings: {
-          slidesToShow: 5,
+          slidesToShow: 4,
           slidesToScroll: 1,
 
         }
@@ -66,7 +66,7 @@ function ProductDetails() {
       {
         breakpoint: 1200, // Bootstrap LG (≥1200px)
         settings: {
-          slidesToShow: 5,
+          slidesToShow: 4,
           slidesToScroll: 1,
           centerPadding: "0"
         }
@@ -124,7 +124,7 @@ function ProductDetails() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "90px"
+          centerPadding: "75px"
         }
       }
     ]
@@ -147,7 +147,7 @@ function ProductDetails() {
         setSimilarProducts(similar);
 
         console.log(data);
-        
+
 
         const recommended = await getRecommendedProducts(data.category.name);
         setRecommendedProducts(recommended);
@@ -194,12 +194,13 @@ function ProductDetails() {
   };
 
 
-  if (loading) return
-  <div className="d-flex justify-content-center align-items-center">
-    <div className="spinner-border text-primary" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </div>
-  </div>;
+  if (loading) {
+    return (
+      <div style={{ height: '100vh', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
+        <img src="/assets/loading.gif" alt="Loading…" className='objectfit-cover w-100 h-100' />
+      </div>
+    );
+  }
   if (!product) return <p className="text-center my-5">Product not found.</p>;
 
   return (

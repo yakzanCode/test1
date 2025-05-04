@@ -2,30 +2,36 @@ import { useState, useEffect } from 'react';
 import { addToCart } from '../utils/firstUtils.js';
 import CardComponent from './Card.jsx';
 import { div } from 'framer-motion/client';
+import { getAllProducts } from '../services/api.js';
 
 function ProductsList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError]       = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // const response = await fetch('http://localhost:3000/api/products');
-        const response = await fetch('http://localhost:3000/api/products');
-
-        const data = await response.json();
+        const data = await getAllProducts();
         setProducts(data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+        setError("Failed to load products. Please try again.");
+      } finally {
         setLoading(false);
-      } catch (error) {
-        console.error("Error fetching products:", error);
       }
     };
     fetchProducts();
   }, []);
 
   if (loading) {
-    return <p>Loading products...</p>;
+    return (
+      <div style={{ height: '100vh', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
+        <img src="/assets/loading.gif" alt="Loading…" className='objectfit-cover w-100 h-100'/>
+      </div>
+    );
   }
+  if (error)   return <p className="text-danger">{error}</p>;
 
   return (
     <div className='container'>
