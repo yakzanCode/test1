@@ -207,7 +207,7 @@ function Home() {
             <div className="rounded-circle d-flex mx-auto bg-darkred text-white" style={{ width: '45px', height: '45px' }}>
               <p className='d-flex m-auto mb-4'>100%</p>
             </div>
-            <p className='position-absolute bottom-0 start-0 end-0 bg-body-tertiary mx-auto text-darkred' style={{ width: '72px' }}>QUALITY GUARANTEE</p>
+            <p className='position-absolute bottom-0 start-0 end-0 bg-body-tertiary mx-auto text-darkred' >QUALITY GUARANTEE</p>
           </div>
           <div className="text-center d-block" style={{ fontSize: '8px', width: '50px' }}>
             <p className="mb-0">PREMIUM</p>
