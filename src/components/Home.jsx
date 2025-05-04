@@ -130,7 +130,7 @@ function Home() {
       {/* Hero Section */}
       <section className="hero-section">
         <video className="hero-video" autoPlay muted loop playsInline >
-          <source src="/public/assets/hero.mp4" type="video/mp4" />
+          <source src="https://yakzancode.github.io/test1/public/assets/hero.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="hero-overlay"></div>
@@ -154,7 +154,7 @@ function Home() {
 
       {/* <div className='card border-0 text-uppercase' style={{ height: '30vh' }}>
         <img alt={cat}
-          src="/public/assets/bras.jpg"
+          src="https://yakzancode.github.io/test1/public/assets/bras.jpg"
           className='w-100 h-100'
           style={{ objectFit: 'cover' }} />
         <div className="card-img-overlay d-flex flex-column justify-content-center text-center text-light fw-bold"
@@ -182,7 +182,7 @@ function Home() {
 
       <div className='card border-0 text-uppercase my-5' style={{ height: '45vh' }}>
         <img
-          src="/public/assets/home1.jpg"
+          src="https://yakzancode.github.io/test1/public/assets/home1.jpg"
           className='w-100 h-100'
           style={{ objectFit: 'cover' }} />
         <div className="card-img-overlay d-flex flex-column justify-content-center text-center text-light fw-bold"
@@ -198,7 +198,7 @@ function Home() {
           <div className="row align-items-center">
             <div className="col-md-6 mb-4 mb-md-0">
               <img
-                src="/public/assets/bras3.jpg"
+                src="https://yakzancode.github.io/test1/public/assets/bras3.jpg"
                 alt="About our brand"
                 className="img-fluid rounded shadow"
                 style={{ objectFit: 'cover', width: '100%', height: '100%' }}
@@ -221,7 +221,7 @@ function Home() {
 
       <div className='card border-0 text-uppercase my-5' style={{ height: '45vh' }}>
         <img
-          src="/public/assets/home2.jpg"
+          src="https://yakzancode.github.io/test1/public/assets/home2.jpg"
           className='w-100 h-100'
           style={{ objectFit: 'cover' }} />
         <div className="card-img-overlay d-flex flex-column justify-content-center text-center text-light fw-bold"
